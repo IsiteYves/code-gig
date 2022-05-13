@@ -23,3 +23,13 @@ exports.createNewGig = async (req, res) => {
     res.status(500).send({ message: `Error: ${err}` });
   }
 };
+
+exports.deleteGig = async (req, res) => {
+  try {
+    await Gig.destroy({ where: { id: req.params.id } }).then(() =>
+      res.status(200).send({ message: "Successfully delete the gig." })
+    );
+  } catch (err) {
+    res.status(500).send({ message: `Error deleting the gig: ${err}` });
+  }
+};
